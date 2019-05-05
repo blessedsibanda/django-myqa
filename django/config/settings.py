@@ -144,3 +144,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# auth urls 
+LOGIN_URL = 'user:login'
+LOGIN_REDIRECT_URL = 'qanda:index'
+LOGOUT_REDIRECT_URL = 'qanda:index'

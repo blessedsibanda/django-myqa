@@ -11,4 +11,5 @@ urlpatterns = [
     path('daily/<int:year>/<int:month>/<int:day>/',
          views.DailyQuestionList.as_view(), 
          name='daily_questions'),
+    path('', views.TodaysQuestionList.as_view(), name='index'),
 ]
