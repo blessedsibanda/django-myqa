@@ -10,7 +10,7 @@
                     </span>
                 {% endif %}
                 {% if answer.accepted and reject_form %}
-                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.question.id %}" 
+                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.id %}" 
                     method="post">
                     {% csrf_token %}
                     {{ reject_form }}
@@ -19,7 +19,7 @@
                         Reject</button>
                 </form>
                 {% elif accept_form %}
-                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.question.id %}" 
+                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.id %}" 
                     method="post">
                     {% csrf_token %}
                     {{ accept_form }}
