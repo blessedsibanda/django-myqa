@@ -1,0 +1,43 @@
+{% load markdownify %}
+<h3>Answers</h3>
+<ul class="list-unstyled answers">
+    {% for answer in question.answer_set.all %}
+        <li class="answer row">
+            <div class="col-sm-3 col-md-2 text-center">
+                {% if answer.accepted %}
+                    <span class="badge badge-pill badge-success">
+                        Accepted
+                    </span>
+                {% endif %}
+                {% if answer.accepted and reject_form %}
+                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.question.id %}" 
+                    method="post">
+                    {% csrf_token %}
+                    {{ reject_form }}
+                    <button class="btn btn-link" type="submit">
+                        <i class="fa fa-times" ></i>
+                        Reject</button>
+                </form>
+                {% elif accept_form %}
+                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.question.id %}" 
+                    method="post">
+                    {% csrf_token %}
+                    {{ accept_form }}
+                    <button class="btn btn-link" title="Accept answer" type="submit">
+                        <i class="fa fa-check-circle" ></i>
+                        Accept</button>
+                </form>
+                {% endif %}
+            </div>
+            <div class="col-sm-9 col-md-10">
+                <div class="body">{{ answer.answer|markdownify }}</div>
+                <div class="meta font-weight-light">
+                    Answered by <span class="font-weight-bold text-info">{{ answer.user }}</span> on {{ answer.created }}
+                </div>
+            </div>
+        </li>
+        <hr>
+    {% empty %}
+        <li class="answer">No answers yet.</li>
+    {% endfor %}
+</ul>
