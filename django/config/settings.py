@@ -25,7 +25,7 @@ SECRET_KEY = 'zk40!_$h#k*bs7p%q)l)=zyn@^rsphix&bj98$jilx!(i)4jv)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['locahost','192.168.42.180']
 
 
 # Application definition
@@ -149,3 +149,8 @@ STATICFILES_DIRS = [
 LOGIN_URL = 'user:login'
 LOGIN_REDIRECT_URL = 'qanda:index'
 LOGOUT_REDIRECT_URL = 'qanda:index'
+
+# elastic search
+ES_INDEX = 'answerly'
+ES_HOST = 'localhost'
+ES_PORT = '9200'
