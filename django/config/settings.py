@@ -25,7 +25,7 @@ SECRET_KEY = 'zk40!_$h#k*bs7p%q)l)=zyn@^rsphix&bj98$jilx!(i)4jv)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['locahost','192.168.42.180']
+ALLOWED_HOSTS = ['locahost','127.0.0.1']
 
 
 # Application definition

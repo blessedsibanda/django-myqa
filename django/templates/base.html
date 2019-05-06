@@ -38,6 +38,16 @@
                     <a class="nav-link" href="{% url 'user:register' %}" >Register</a >
                   </li >
                 {% endif %}
+                <li class="nav-item">
+                  <form action="{% url 'qanda:question_search' %}" 
+                    class="form-inline" method="GET">
+                    <input type="search" name='q' placeholder="Search" 
+                      class="form-control mr-sm-2">
+                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">
+                      Search
+                    </button>
+                  </form>
+                </li>
               </ul >
         </div>
     </nav>

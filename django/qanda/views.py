@@ -1,12 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (CreateView, DetailView, 
-    UpdateView, DayArchiveView, RedirectView )
+    UpdateView, DayArchiveView, RedirectView, TemplateView )
 from django.utils import timezone
 from django.shortcuts import reverse
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 
 from qanda.forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
 from qanda.models import Question, Answer 
+from qanda.service.elasticsearch import search_for_questions
 
 
 class AskQuestionView(LoginRequiredMixin, CreateView):
@@ -115,3 +116,15 @@ class TodaysQuestionList(RedirectView):
                 'year': today.year
             }
         )
+
+
+class SearchView(TemplateView):
+    template_name = 'qanda/search.html'
+
+    def get_context_data(self, **kwargs):
+        query = self.request.GET.get('q', None)
+        ctx = super().get_context_data(query=query,**kwargs)
+        if query:
+            results = search_for_questions(query)
+            ctx['hits'] = results
+        return ctx
